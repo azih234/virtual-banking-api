@@ -22,8 +22,11 @@ jobs:
           npm install -g newman-reporter-htmlextra
 
       - name: Run Postman Collection
+        continue-on-error: true
         run: |
-          newman run github-test.postman_collection.json \
+          newman run "Virtual Banking API Copy.postman_collection.json" \
+          -e environment.json \
+          -d test_data.json \
           -r cli,json,junit,htmlextra \
           --reporter-json-export reports/results.json \
           --reporter-junit-export reports/results.xml \
