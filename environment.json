@@ -1,0 +1,24 @@
+{
+  "id": "virtual-banking-env",
+  "name": "Virtual Banking Environment",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4500",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "accountId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "recipientId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    }
+  ]
+}

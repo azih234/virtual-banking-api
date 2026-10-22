@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Virtual Banking API Copy" tests="18" time="0.147">
+  <testsuite name="Positive / View All Accounts" id="ea578f53-24c7-4719-ab8d-358c50882099" timestamp="2026-10-22T02:37:39.466Z" tests="4" failures="0" errors="0" time="0.012">
+    <testcase name="Status code is successful" time="0.004" classname="PositiveViewAllAccounts"/>
+    <testcase name="Response time is acceptable" time="0.004" classname="PositiveViewAllAccounts"/>
+    <testcase name="Status code is 200" time="0.004" classname="PositiveViewAllAccounts"/>
+    <testcase name="Response is an array" time="0.004" classname="PositiveViewAllAccounts"/>
+  </testsuite>
+  <testsuite name="Positive / Create Account" id="b9f713d7-37ac-46e7-83c2-ba7e50100802" timestamp="2026-10-22T02:37:39.466Z" tests="4" failures="0" errors="0" time="0.007">
+    <testcase name="Status code is successful" time="0.006" classname="PositiveCreateAccount"/>
+    <testcase name="Response time is acceptable" time="0.006" classname="PositiveCreateAccount"/>
+    <testcase name="Account created" time="0.006" classname="PositiveCreateAccount"/>
+    <testcase name="Account ID returned" time="0.006" classname="PositiveCreateAccount"/>
+  </testsuite>
+  <testsuite name="Positive / Create Second Account" id="6c86fa41-829c-4ee2-b091-672c84f17d13" timestamp="2026-10-22T02:37:39.466Z" tests="4" failures="0" errors="0" time="0.007">
+    <testcase name="Status code is successful" time="0.006" classname="PositiveCreateSecondAccount"/>
+    <testcase name="Response time is acceptable" time="0.006" classname="PositiveCreateSecondAccount"/>
+    <testcase name="Recipient account created" time="0.006" classname="PositiveCreateSecondAccount"/>
+    <testcase name="Recipient ID returned" time="0.006" classname="PositiveCreateSecondAccount"/>
+  </testsuite>
+  <testsuite name="Positive / View Account" id="418ae36c-87d9-4f9e-911b-562048df9190" timestamp="2026-10-22T02:37:39.466Z" tests="4" failures="0" errors="0" time="0.004">
+    <testcase name="Status code is successful" time="0.005" classname="PositiveViewAccount"/>
+    <testcase name="Response time is acceptable" time="0.005" classname="PositiveViewAccount"/>
+    <testcase name="Account retrieved" time="0.005" classname="PositiveViewAccount"/>
+    <testcase name="Correct account loaded" time="0.005" classname="PositiveViewAccount"/>
+  </testsuite>
+  <testsuite name="Positive / Check Balance" id="5b107ec2-8d1c-4264-aec1-191656aafbb6" timestamp="2026-10-22T02:37:39.466Z" tests="4" failures="0" errors="0" time="0.004">
+    <testcase name="Status code is successful" time="0.005" classname="PositiveCheckBalance"/>
+    <testcase name="Response time is acceptable" time="0.005" classname="PositiveCheckBalance"/>
+    <testcase name="Balance retrieved" time="0.005" classname="PositiveCheckBalance"/>
+    <testcase name="Balance exists" time="0.005" classname="PositiveCheckBalance"/>
+  </testsuite>
+  <testsuite name="Positive / Deposit Money" id="d02237c6-2e2a-4a56-b922-8d57bf0a588f" timestamp="2026-10-22T02:37:39.466Z" tests="4" failures="0" errors="0" time="0.012">
+    <testcase name="Status code is successful" time="0.012" classname="PositiveDepositMoney"/>
+    <testcase name="Response time is acceptable" time="0.012" classname="PositiveDepositMoney"/>
+    <testcase name="Deposit successful" time="0.012" classname="PositiveDepositMoney"/>
+    <testcase name="Balance updated" time="0.012" classname="PositiveDepositMoney"/>
+  </testsuite>
+  <testsuite name="Positive / Withdraw Money" id="c45e49b6-b531-4ba0-a67b-be1f2cd22e8b" timestamp="2026-10-22T02:37:39.466Z" tests="3" failures="0" errors="0" time="0.012">
+    <testcase name="Status code is successful" time="0.012" classname="PositiveWithdrawMoney"/>
+    <testcase name="Response time is acceptable" time="0.012" classname="PositiveWithdrawMoney"/>
+    <testcase name="Withdraw successful" time="0.012" classname="PositiveWithdrawMoney"/>
+  </testsuite>
+  <testsuite name="Positive / Transfer Money" id="db3371d1-8d71-4f4e-9e22-22abe04090ea" timestamp="2026-10-22T02:37:39.466Z" tests="3" failures="0" errors="0" time="0.013">
+    <testcase name="Status code is successful" time="0.011" classname="PositiveTransferMoney"/>
+    <testcase name="Response time is acceptable" time="0.011" classname="PositiveTransferMoney"/>
+    <testcase name="Transfer successful" time="0.011" classname="PositiveTransferMoney"/>
+  </testsuite>
+  <testsuite name="Positive / Transaction History" id="06b3706a-ebc1-4646-aa6d-2b73a93c19ab" timestamp="2026-10-22T02:37:39.466Z" tests="4" failures="0" errors="0" time="0.004">
+    <testcase name="Status code is successful" time="0.004" classname="PositiveTransactionHistory"/>
+    <testcase name="Response time is acceptable" time="0.004" classname="PositiveTransactionHistory"/>
+    <testcase name="Transaction history returned" time="0.004" classname="PositiveTransactionHistory"/>
+    <testcase name="Transactions exist" time="0.004" classname="PositiveTransactionHistory"/>
+  </testsuite>
+</testsuites>

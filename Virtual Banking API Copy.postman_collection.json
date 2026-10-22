@@ -1,0 +1,349 @@
+{
+  "info": {
+    "_postman_id": "e04ab95f-b95e-4c4c-815b-ec9818b70453",
+    "name": "Virtual Banking API Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57505304",
+    "_collection_link": "https://go.postman.co/collection/57505304-e04ab95f-b95e-4c4c-815b-ec9818b70453?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Positive",
+      "item": [
+        {
+          "name": "View All Accounts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data).to.be.an(\"array\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();\r\n\r\npm.environment.set(\r\n    \"accountId\",\r\n    jsonData.accountId\r\n);\r\n\r\nconsole.log(\r\n    \"Saved accountId:\",\r\n    jsonData.accountId\r\n);\r\n\r\npm.test(\"Account created\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Account ID returned\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.accountId).to.exist;\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"accountName\": \"{{accountName}}\",\r\n  \"accountType\": \"{{accountType}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Second Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();\r\n\r\npm.environment.set(\r\n    \"recipientId\",\r\n    jsonData.accountId\r\n);\r\n\r\nconsole.log(\r\n    \"Saved recipientId:\",\r\n    jsonData.accountId\r\n);\r\n\r\npm.test(\"Recipient account created\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Recipient ID returned\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.accountId).to.exist;\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"accountName\": \"{{recipientName}}\",\r\n  \"accountType\": \"{{recipientType}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "View Account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Account retrieved\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Correct account loaded\", function () {\r\n    const data = pm.response.json();\r\n\r\n    pm.expect(String(data.accountId))\r\n    .to.eql(pm.environment.get(\"accountId\"));\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/accounts/{{accountId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts",
+                "{{accountId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Check Balance",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Balance retrieved\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Balance exists\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.balance).to.not.be.undefined;\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/accounts/{{accountId}}/balance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts",
+                "{{accountId}}",
+                "balance"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deposit Money",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Deposit successful\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Balance updated\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.balance).to.be.above(0);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": {{depositAmount}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/accounts/{{accountId}}/deposit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts",
+                "{{accountId}}",
+                "deposit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Withdraw Money",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Withdraw successful\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"amount\": {{withdrawAmount}}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/accounts/{{accountId}}/withdraw",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts",
+                "{{accountId}}",
+                "withdraw"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Transfer Money",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Transfer successful\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"fromAccount\": \"{{accountId}}\",\r\n  \"toAccount\": \"{{recipientId}}\",\r\n  \"amount\": {{transferAmount}}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transfers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transfers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Transaction History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Transaction history returned\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Transactions exist\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data).to.be.an(\"array\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "console.log(\"Running dataset:\");\r",
+          "console.log(pm.iterationData.toObject());\r",
+          "\r",
+          ""
+        ],
+        "type": "text/javascript"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test(\"Status code is successful\", function () {\r",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+          "});\r",
+          "\r",
+          "pm.test(\"Response time is acceptable\", function () {\r",
+          "    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

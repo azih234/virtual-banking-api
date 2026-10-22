@@ -1,0 +1,20 @@
+[
+  {
+    "accountName": "Pedro Santos",
+    "accountType": "Checking",
+    "recipientName": "Ana Reyes",
+    "recipientType": "Checking",
+    "depositAmount": 2000,
+    "withdrawAmount": 250,
+    "transferAmount": 750
+  },
+  {
+    "accountName": "Juan Dela Cruz",
+    "accountType": "Savings",
+    "recipientName": "Carla Gomez",
+    "recipientType": "Savings",
+    "depositAmount": 5000,
+    "withdrawAmount": 1000,
+    "transferAmount": 1500
+  }
+]
